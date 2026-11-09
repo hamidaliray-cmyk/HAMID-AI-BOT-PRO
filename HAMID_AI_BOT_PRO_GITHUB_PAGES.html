@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAMID AI BOT PRO</title>
+<style>
+:root{--bg:#030817;--panel:#07152b;--panel2:#0a1d38;--blue:#078bff;--cyan:#00d5ff;--gold:#e8b84c;--muted:#8ca4c5;--white:#edf6ff;--green:#00e59b;--red:#ff365b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#102c54 0,#061126 40%,#020611 100%);color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100vh;padding:12px 10px 86px}
+.app{max-width:480px;margin:auto}.top{display:flex;align-items:center;gap:10px;padding:8px 5px 13px}.hamid-top{justify-content:flex-start;padding:10px 5px 18px}.brand-lockup{display:flex;align-items:center;gap:13px;width:100%;padding:12px 14px;border:1px solid #8c6b2d;border-radius:17px;background:linear-gradient(110deg,#0b1d37,#101b31 65%,#211a0d);box-shadow:0 0 22px #d8a83b22}.hamid-emblem{width:66px;height:66px;flex:0 0 66px;border-radius:50%;display:grid;place-items:center;border:2px solid #e8b84c;background:radial-gradient(circle at 35% 30%,#1b5482,#07152b 68%);box-shadow:0 0 16px #e8b84c55,inset 0 0 12px #078bff55;color:#e8c66c;font-size:31px}.brand-name{font-size:18px;font-weight:1000;letter-spacing:.4px;color:#f3d58a;line-height:1.2}.brand-tag{font-size:9px;letter-spacing:1.8px;color:#8fcfff;margin-top:6px;font-weight:800}.brand-status{font-size:8px;color:#00e59b;margin-top:5px;letter-spacing:1px}.ring-name{font-size:19px;font-weight:1000;white-space:nowrap}.ring-sub{font-size:12px;font-weight:900;letter-spacing:1.1px;margin-top:8px;white-space:nowrap}.logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(145deg,#05aaff,#263c9f);display:grid;place-items:center;font-size:24px;box-shadow:0 0 18px #008cff66}.brand{font-weight:900;font-size:19px;letter-spacing:.2px}
+.status{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:11px}.status>div{background:#07172b;border:1px solid #163456;border-radius:11px;padding:9px 5px;text-align:center;font-size:9px;color:#88a6c9}.status strong{display:block;color:var(--green);font-size:11px;margin-top:5px}.status strong.gold{color:var(--gold)}
+.vip{border:1px solid #886a2b;background:linear-gradient(90deg,#241b0c,#483512,#241b0c);border-radius:10px;text-align:center;padding:10px;color:#ffd66c;font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:13px;box-shadow:0 0 16px #d99b2522}
+.panel{background:linear-gradient(160deg,#0b1d37,#061226 75%);border:1px solid #16375d;border-radius:17px;padding:15px;margin-bottom:12px;box-shadow:0 8px 25px #0008}
+.heading{text-align:center;font-weight:900;font-size:18px;letter-spacing:1px}.heading span{color:var(--cyan)}.sub{text-align:center;color:#829bbd;font-size:10px;margin:5px 0 13px}
+.fields{display:grid;gap:8px}.field{display:flex;align-items:center;gap:9px;background:#061329;border:1px solid #183557;border-radius:11px;padding:10px}.field .ico{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#0b2b50;color:#29baff;font-size:13px}.field label{display:block;color:#7894b8;font-size:8px;letter-spacing:1.2px;margin-bottom:4px}.field select{width:100%;background:transparent;color:#edf6ff;border:0;outline:0;font-size:12px;font-weight:700}.field option{background:#07152b;color:white}
+.price-input{width:100%;min-height:92px;resize:vertical;background:#07172c;color:#fff;border:1px solid #24476d;border-radius:10px;padding:11px;font:12px/1.5 Arial;margin-top:8px}.hint{font-size:10px;color:#91aaca;line-height:1.5;margin-top:6px}.generate{width:100%;border:0;border-radius:12px;margin-top:12px;padding:14px;background:linear-gradient(90deg,#078bff,#7652ff);color:white;font-size:12px;font-weight:900;letter-spacing:.7px;box-shadow:0 5px 18px #126aff55;cursor:pointer}
+.analysis{display:none;text-align:center;padding:12px 5px 5px}.analysis.show{display:block}.scanner{height:205px;display:grid;place-items:center;position:relative;margin:4px auto 7px;max-width:270px}.ring{position:absolute;border:2px solid #008dff66;border-radius:50%;box-shadow:0 0 15px #008dff44,inset 0 0 12px #008dff22}.r1{width:190px;height:190px;border-top-color:#19caff;animation:spin 3s linear infinite}.r2{width:155px;height:155px;border-right-color:#1c9dff;animation:spin 2s linear infinite reverse}.r3{width:120px;height:120px;border-bottom-color:#00d5ff;animation:spin 1.5s linear infinite}.core{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle,#063c76,#03142d);border:1px solid #087bdb;display:grid;place-items:center;color:#16aaff;font-size:32px;box-shadow:0 0 28px #008cff88;z-index:1;animation:pulse 1.4s ease-in-out infinite}.orbit{position:absolute;width:205px;height:205px;border-radius:50%;border:1px dashed #0c69b4;animation:spin 7s linear infinite}.orbit:before{content:"";position:absolute;top:10px;left:27px;width:7px;height:7px;border-radius:50%;background:#00d5ff;box-shadow:0 0 12px #00d5ff}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.09);box-shadow:0 0 42px #008cff}}
+.analyzing{font-size:12px;color:#16aaff;font-weight:900;letter-spacing:3px}.count{font-size:34px;font-weight:900;margin:6px}.wait{font-size:10px;color:#8ca4c5}
+.checks{display:grid;gap:7px;margin-top:13px;text-align:left}.check{background:#071a31;border:1px solid #173b60;border-radius:9px;padding:9px 10px;font-size:10px;color:#a9c3e2;display:flex;justify-content:space-between}.check em{font-style:normal;color:#7089a8}.check.done em{color:var(--green)}
+.result{display:none;margin-top:14px}.result.show{display:block}.signalbox{display:flex;align-items:center;justify-content:space-between;gap:7px;background:#07162c;border:1px solid #20436a;border-radius:13px;padding:12px}.signalmeta{font-size:9px;color:#91aaca;line-height:1.9}.signalmeta b{color:#fff;font-size:11px}.signalcircle{width:124px;height:124px;flex:0 0 124px;border-radius:50%;display:grid;place-items:center;text-align:center;border:3px solid var(--red);color:var(--red);box-shadow:0 0 24px #ff365b55,inset 0 0 18px #ff365b22}.signalcircle.up{border-color:var(--green);color:var(--green);box-shadow:0 0 24px #00e59b55,inset 0 0 18px #00e59b22}.arrow{font-size:34px;line-height:1}.signalcircle strong{font-size:16px;letter-spacing:1px}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:9px}.metric{background:#07172c;border:1px solid #183657;border-radius:9px;padding:10px}.metric span{display:block;color:#829bbd;font-size:8px;letter-spacing:1px}.metric b{display:block;font-size:12px;margin-top:5px}.donebar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;color:#9bb6d6;font-size:10px}.again{background:#126fe8;color:white;border:0;border-radius:9px;padding:10px 13px;font-weight:800}
+.settings-title{font-size:12px;font-weight:900;letter-spacing:1px;margin-bottom:10px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.settings-grid .field{padding:9px}.warning{font-size:9px;color:#f1c66b;line-height:1.5;text-align:center;margin:10px 5px 0}
+.overview{padding:16px;background:linear-gradient(135deg,#102b4c,#08172d 62%,#20190d);border-color:#71592d}.overview-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.eyebrow{font-size:8px;letter-spacing:2px;color:#8dbbe0;font-weight:900}.overview h2{font-size:19px;margin:6px 0 3px;color:#f3d58a}.overview h2 span{color:#35c9ff}.overview-head p{font-size:9px;color:#91aaca;margin:0}.overview-mark{width:43px;height:43px;display:grid;place-items:center;border-radius:50%;border:1px solid #d5ad54;color:#f3d58a;font-size:22px;box-shadow:0 0 18px #d5ad5433}.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:15px}.overview-grid>div{min-width:0;padding:10px 8px;background:#041329aa;border:1px solid #24496c;border-radius:10px}.overview-grid small{display:block;color:#829bbd;font-size:7px;letter-spacing:.7px}.overview-grid b{display:block;color:#edf6ff;font-size:12px;margin-top:6px;overflow-wrap:anywhere}.overview-grid em{display:block;color:#00d5ff;font-size:8px;font-style:normal;margin-top:4px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#041024ee;border-top:1px solid #18395b;display:flex;justify-content:center;z-index:5;backdrop-filter:blur(12px)}.nav{width:100%;max-width:480px;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px 10px}.nav button{appearance:none;border:0;background:transparent;color:#718eaf;text-align:center;font-size:9px;font-family:inherit;padding:3px 0;cursor:pointer;touch-action:manipulation}.nav button span{display:block;font-size:17px;margin-bottom:3px}.nav button.active{color:#19aaff}.page{display:none}.page.active{display:block}.history-list{display:grid;gap:8px}.history-item{background:#07172c;border:1px solid #183657;border-radius:10px;padding:10px;display:flex;justify-content:space-between;gap:8px;font-size:10px}.history-item b{display:block;color:#edf6ff;font-size:11px;margin-bottom:4px}.history-item small{color:#8ca4c5}.history-dir{font-weight:900;font-size:13px;align-self:center}.history-dir.up{color:var(--green)}.history-dir.down{color:var(--red)}.empty-state{text-align:center;color:#8ca4c5;padding:24px 10px;font-size:11px}.support-card{text-align:center;padding:20px 10px}.support-icon{font-size:35px;color:var(--cyan)}.support-card h3{margin:8px 0;color:#f3d58a}.support-card p,.about-copy{font-size:11px;line-height:1.6;color:#a9c3e2}.support-note{color:#f1c66b!important}
+@media(max-width:360px){.brand-lockup{gap:9px;padding:10px}.hamid-emblem{width:54px;height:54px;flex-basis:54px}.brand-name{font-size:15px}.brand-tag{font-size:7px;letter-spacing:1.2px}.overview-grid{gap:5px}.overview-grid>div{padding:8px 6px}.overview-grid small{font-size:6px}.overview-grid b{font-size:10px}}
+@media(min-width:600px){body{padding-top:25px}.app{max-width:460px}}
+
+/* Compact side control: WIN/LOSS stays off the dashboard center */
+.result-launch{position:fixed;right:max(10px,calc((100vw - 480px)/2 + 8px));top:180px;z-index:8;width:54px;height:54px;border-radius:50%;border:2px solid #e8b84c;background:radial-gradient(circle at 35% 28%,#244d70,#07152b 72%);color:#f3d58a;font-weight:1000;font-size:12px;letter-spacing:.4px;box-shadow:0 0 18px #e8b84c55,inset 0 0 10px #078bff55;cursor:pointer}
+.result-launch small{display:block;font-size:7px;letter-spacing:1px;margin-top:2px;color:#8fcfff}
+.result-modal{display:none;position:fixed;inset:0;z-index:20;background:#010611dd;padding:18px 12px;align-items:center;justify-content:center}
+.result-modal.open{display:flex}.result-dialog{width:100%;max-width:430px;max-height:85vh;overflow:auto;background:linear-gradient(160deg,#102747,#061226 78%);border:1px solid #a17a32;border-radius:18px;padding:16px;box-shadow:0 15px 50px #000c}
+.result-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.result-dialog h3{margin:0;color:#f3d58a;font-size:16px;letter-spacing:.8px}.close-result{border:1px solid #385777;border-radius:50%;width:32px;height:32px;background:#07172c;color:#fff;font-size:18px}
+.result-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.result-form label{font-size:8px;letter-spacing:1px;color:#8ca4c5}.result-form input,.result-form select{display:block;width:100%;margin-top:5px;background:#061329;border:1px solid #24496c;border-radius:9px;color:#edf6ff;padding:10px;font-size:12px;min-width:0}.result-form .wide{grid-column:1/-1}.save-result{grid-column:1/-1;border:0;border-radius:10px;padding:12px;background:linear-gradient(90deg,#a77922,#e8b84c);color:#111a29;font-weight:1000;letter-spacing:.7px}
+.result-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0 10px}.result-summary>div{background:#061329;border:1px solid #24496c;border-radius:10px;padding:10px 5px;text-align:center}.result-summary small{display:block;color:#8ca4c5;font-size:8px}.result-summary b{display:block;font-size:17px;margin-top:5px}.win-text{color:var(--green)}.loss-text{color:var(--red)}.trade-result-list{display:grid;gap:7px}.trade-result-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;background:#061329;border:1px solid #24496c;border-radius:10px;font-size:10px}.trade-result-item b{display:block;color:#edf6ff;font-size:11px;margin-bottom:4px}.trade-result-item small{color:#8ca4c5}.result-pill{font-weight:1000;letter-spacing:.8px}.result-pill.WIN{color:var(--green)}.result-pill.LOSS{color:var(--red)}
+@media(max-width:360px){.result-launch{top:165px;width:48px;height:48px;right:7px}}
+</style>
+</head>
+<body>
+<div class="app">
+<button class="result-launch" id="result-launch" type="button" aria-label="Open WIN LOSS records">W / L<small>RECORD</small></button>
+<div class="result-modal" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title">
+ <div class="result-dialog">
+  <div class="result-dialog-head"><h3 id="result-title">◉ WIN / LOSS RECORD</h3><button class="close-result" id="close-result" type="button" aria-label="Close">×</button></div>
+  <div class="sub">Record the actual result you see in your broker. This is manual tracking, not automatic verification.</div>
+  <form class="result-form" id="trade-result-form">
+   <label>PAIR<input id="record-pair" type="text" maxlength="30" placeholder="e.g. EUR/USD" required></label>
+   <label>DIRECTION<select id="record-direction"><option>UP</option><option>DOWN</option></select></label>
+   <label>RESULT<select id="record-outcome"><option value="WIN">WIN</option><option value="LOSS">LOSS</option></select></label>
+   <label>TRADE NOTE (OPTIONAL)<input id="record-note" type="text" maxlength="50" placeholder="Optional"></label>
+   <button class="save-result" type="submit">＋ SAVE TRADE RESULT</button>
+  </form>
+  <div class="result-summary"><div><small>TOTAL</small><b id="record-total">0</b></div><div><small>WIN</small><b class="win-text" id="record-wins">0</b></div><div><small>LOSS</small><b class="loss-text" id="record-losses">0</b></div></div>
+  <div class="result-summary" style="grid-template-columns:1fr"><div><small>WIN RATE</small><b id="record-rate">—</b></div></div>
+  <div class="trade-result-list" id="trade-result-list"><div class="empty-state">No WIN/LOSS records yet. Add your first result above.</div></div>
+ </div>
+</div>
+<header class="top hamid-top"><div class="brand-lockup"><div class="hamid-emblem" aria-label="Temporary AI emblem">✦</div><div><div class="brand-name">HAMID AI BOT PRO</div><div class="brand-tag">SMART SIGNAL ASSISTANT</div><div class="brand-status">● PREMIUM INTERFACE</div></div></div></header>
+<section class="status" aria-label="System status">
+ <div>LICENSE STATUS<strong class="gold">● PREVIEW</strong></div>
+ <div>CONNECTION<strong class="gold">● LIVE FEED REQUIRED</strong></div>
+ <div>AI ENGINE<strong class="gold">● NOT LIVE</strong></div>
+</section>
+<div class="vip">♛ &nbsp; HAMID AI BOT PRO · PREMIUM PREVIEW &nbsp; ✓</div>
+
+<main id="page-dashboard" class="page active">
+<section class="overview panel">
+ <div class="overview-head"><div><div class="eyebrow">YOUR WORKSPACE</div><h2>Welcome to <span>HAMID AI</span></h2><p>Dashboard preview · Day 1 design</p></div><div class="overview-mark">✦</div></div>
+ <div class="overview-grid">
+  <div><small>SUPPORTED BROKERS</small><b>05</b><em>Live / OTC modes</em></div>
+  <div><small>MARKET FEED</small><b>OFFLINE</b><em>API not connected</em></div>
+  <div><small>WORKSPACE</small><b>PREVIEW</b><em>Interface testing</em></div>
+ </div>
+</section>
+<section class="panel" id="setup">
+ <div class="heading">GENERATE <span>SIGNALS</span></div>
+ <div class="sub">Choose the pair and expiry, then start the signal calculation</div>
+ <div class="warning">LIVE MODE SELECTED. Simulated signals are disabled. A verified market-data connection is required before real CALL / PUT analysis can run.</div>
+ <div class="fields">
+  <div class="field"><div class="ico">◉</div><div style="flex:1"><label>BROKER</label><select id="broker"><option>Quotex</option><option selected>Pocket Option</option><option>Binomo</option><option>Olymp Trade</option><option>IQ Option</option></select></div></div>
+  <div class="field"><div class="ico">▣</div><div style="flex:1"><label>MARKET TYPE</label><select id="market"><option selected>Live Markets</option><option>OTC Markets (broker feed required)</option><option>Crypto Markets (live feed required)</option><option>Stock Markets (live feed required)</option><option>Commodities (live feed required)</option><option>Indices (live feed required)</option></select></div></div>
+  <div class="field"><div class="ico">💱</div><div style="flex:1"><label>PAIR</label><select id="pair"><option>USD/ARS (OTC)</option><option>USD/BRL (OTC)</option><option>EUR/USD (OTC)</option><option>GBP/USD (OTC)</option><option>USD/PKR (OTC)</option><option>USD/INR (OTC)</option><option>USD/BDT (OTC)</option><option>USD/TRY (OTC)</option><option>USD/EGP (OTC)</option><option>USD/NGN (OTC)</option><option selected>EUR/USD</option><option>GBP/USD</option><option>BTC/USD</option></select></div></div>
+  <div class="field"><div class="ico">◷</div><div style="flex:1"><label>EXPIRY TIME</label><select id="expiry"><option>5 Seconds</option><option>10 Seconds</option><option>15 Seconds</option><option>20 Seconds</option><option>25 Seconds</option><option>30 Seconds</option><option>1 Minute</option><option>2 Minutes</option><option>5 Minutes</option><option>10 Minutes</option><option>15 Minutes</option><option>30 Minutes</option></select></div></div>
+ </div>
+ <div class="panel" style="margin:14px 0 0;padding:13px;background:#061329;border-color:#8c6b2d">
+  <div class="settings-title" style="color:#f3d58a">◈ ONE-TAP SIGNAL GENERATOR</div>
+  <div class="hint">Live analysis only. The generator will stay locked until a verified live price feed is connected. No simulated CALL / PUT results are produced.</div>
+  <button class="generate" id="generate-signal" type="button">✦ GENERATE SIGNAL</button>
+  <div class="hint" id="signal-status" role="status" aria-live="polite">Ready. Select your pair and expiry, then tap GENERATE SIGNAL.</div>
+  <div class="metrics">
+   <div class="metric"><span>SELECTED PAIR</span><b id="auto-pair">EUR/USD</b></div>
+   <div class="metric"><span>DATA STATUS</span><b id="feed-state" style="color:#ffbd5a">FEED NOT CONNECTED</b></div>
+   <div class="metric"><span>ANALYSIS</span><b>LIVE FEED REQUIRED</b></div>
+   <div class="metric"><span>RESULT</span><b id="auto-signal">WAITING</b></div>
+  </div>
+ </div>
+</section>
+<section class="panel" id="live-guide">
+ <div class="settings-title">◈ LIVE MARKET CONNECTION STATUS</div>
+ <div class="checks">
+  <div class="check">1. Select your broker and market <em>READY</em></div>
+  <div class="check">2. Connect a verified live market-data provider <em>REQUIRED</em></div>
+  <div class="check">3. Confirm the feed supplies the selected pair <em>REQUIRED</em></div>
+  <div class="check">4. EMA, RSI and MACD analyze received live prices <em>AFTER CONNECTION</em></div>
+  <div class="check">5. Only then can the app display a live-data-based signal <em>LOCKED</em></div>
+ </div>
+ <div class="warning">Pocket Option is not connected to this HTML app. No verified live feed or broker API is configured. This version will not invent signals or place trades.</div>
+</section>
+
+<section class="panel analysis" id="analysis">
+ <div class="heading">GENERATING <span>SIGNALS</span></div><div class="sub">Live market scanner · waits for verified price data before analysis.</div>
+ <div class="scanner"><div class="orbit"></div><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core">♧</div></div>
+ <div class="analyzing" id="scan-label">SCANNING MARKET</div><div class="wait" id="scan-detail">Initializing signal engine...</div><div class="count" id="count">00:05</div><div class="wait">5-second connection check only — not a trade expiry timer</div>
+ <div class="checks">
+  <div class="check" id="c1">⌕ &nbsp; Scanning market feed <em>WAITING</em></div>
+  <div class="check" id="c2">◈ &nbsp; Analyzing price movement <em>WAITING</em></div>
+  <div class="check" id="c3">◎ &nbsp; Checking pair and expiry <em>WAITING</em></div>
+  <div class="check" id="c4">✧ &nbsp; Preparing CALL / PUT result <em>WAITING</em></div>
+ </div>
+ <div class="result" id="result">
+  <div class="signalbox">
+   <div class="signalmeta">PAIR<br><b id="rpair">USD/ARS (OTC)</b><br>BROKER<br><b id="rbroker">Quotex</b><br>MARKET<br><b id="rmarket">OTC</b></div>
+   <div class="signalcircle" id="circle"><div><div class="arrow" id="arrow">↓</div><strong id="direction">DOWN</strong></div></div>
+   <div class="signalmeta" style="text-align:right">SIGNAL ID<br><b id="sid">CS-00001</b><br>METHOD<br><b id="score">—</b><br>EXPIRY<br><b id="rexpiry">5 sec</b></div>
+  </div>
+  <div class="metrics">
+   <div class="metric"><span>ENTRY TIME</span><b id="entry">--:--:--</b></div>
+   <div class="metric"><span>EXPIRY TIME</span><b id="end">--:--:--</b></div>
+   <div class="metric"><span>SIGNAL STRENGTH</span><b id="strength">Awaiting live feed</b></div>
+   <div class="metric"><span>INDICATOR STATUS</span><b id="confidence">EMA + RSI + MACD</b></div>
+  </div>
+  <div class="hint" id="analysis-detail" style="margin-top:10px"></div>
+  <div class="donebar"><span>✓ Rule-based analysis complete · Not a guarantee</span><button class="again" id="again">ANALYZE AGAIN</button></div>
+ </div>
+</section>
+
+<section class="panel">
+ <div class="settings-title">◈ DAILY PERFORMANCE & RISK CONTROL</div>
+ <div class="metrics">
+  <div class="metric"><span>DAILY PROFIT TARGET</span><b>$10–$20 (GOAL ONLY)</b></div>
+  <div class="metric"><span>DAILY LOSS LIMIT</span><b>Set before trading</b></div>
+  <div class="metric"><span>RISK PER TRADE</span><b>Keep it small</b></div>
+  <div class="metric"><span>TRADE STATUS</span><b>Manual tracking</b></div>
+ </div>
+ <div class="warning">Targets are not guaranteed. This panel is a planning aid only; it does not prevent losses or place trades.</div>
+</section>
+
+
+</main>
+
+<section id="page-history" class="page panel"><div class="heading">SIGNAL <span>HISTORY</span></div><div class="sub">Signals generated from verified live market data only</div><div id="history-list" class="history-list"><div class="empty-state">No verified live signals yet. Connect a live data feed first.</div></div></section>
+<section id="page-performance" class="page"><div class="panel"><div class="heading">YOUR <span>PERFORMANCE</span></div><div class="sub">Signal preview counts and manually recorded trade results</div><div class="metrics"><div class="metric"><span>TOTAL SIGNALS</span><b id="stat-total">0</b></div><div class="metric"><span>UP SIGNALS</span><b id="stat-up">0</b></div><div class="metric"><span>DOWN SIGNALS</span><b id="stat-down">0</b></div><div class="metric"><span>WIN RATE</span><b id="stat-rate">—</b></div></div><div class="warning">WIN rate is calculated only from results you manually record using the round W/L button on the side. No broker verification is connected.</div></div><div class="panel"><div class="settings-title">◈ DAILY PERFORMANCE & RISK CONTROL</div><div class="metrics"><div class="metric"><span>DAILY PROFIT TARGET</span><b>$10–$20 (GOAL ONLY)</b></div><div class="metric"><span>DAILY LOSS LIMIT</span><b>Set before trading</b></div><div class="metric"><span>RISK PER TRADE</span><b>Keep it small</b></div><div class="metric"><span>TRADE STATUS</span><b>Manual tracking</b></div></div><div class="warning">Targets are not guaranteed. This panel is a planning aid only; it does not prevent losses or place trades.</div></div></section>
+<section id="page-support" class="page panel"><div class="heading">HELP & <span>SUPPORT</span></div><div class="sub">HAMID AI BOT PRO</div><div class="support-card"><div class="support-icon">✉</div><h3>Need help?</h3><p>This is the preview version. For help with the interface, return to this chat and tell me what is not working.</p><p class="support-note">No support email or phone number has been configured yet.</p></div></section>
+<section id="page-more" class="page"><section class="panel">
+ <div class="settings-title">⚙ SIGNAL SETTINGS</div>
+ <div class="settings-grid">
+  <div class="field"><div style="flex:1"><label>DEFAULT BROKER</label><select id="broker2"><option>Quotex</option><option>Pocket Option</option><option>Binomo</option><option>Olymp Trade</option><option>IQ Option</option></select></div></div>
+  <div class="field"><div style="flex:1"><label>DEFAULT MARKET</label><select id="market2"><option selected>Live Markets</option><option>OTC Markets (broker feed required)</option></select></div></div>
+ </div>
+ <div class="warning">No verified OTC data provider is connected in this preview. Public Forex prices are not a substitute for Pocket Option OTC prices. No signal guarantees a WIN.</div>
+</section><div class="panel"><div class="settings-title">ABOUT HAMID AI BOT PRO</div><p class="about-copy">Premium dashboard supports both Live Markets and OTC Markets. EMA, RSI and MACD analysis will run only after the matching verified price feed is connected.</p><div class="warning">No broker API or verified live market feed is connected yet. Live signal generation remains locked until a real data source is configured. This app does not place trades.</div></div></section>
+
+</div>
+<nav class="bottom"><div class="nav">
+ <button class="active" type="button" data-tab="dashboard"><span>⌂</span>Dashboard</button><button type="button" data-tab="history"><span>◷</span>History</button><button type="button" data-tab="performance"><span>▥</span>Performance</button><button type="button" data-tab="support"><span>◉</span>Support</button><button type="button" data-tab="more"><span>☰</span>More</button>
+</div></nav>
+<script>
+const $=id=>document.getElementById(id);
+// Paste the deployed Cloudflare Worker URL here after deployment.
+const MARKET_API_URL = 'PASTE_CLOUDFLARE_WORKER_URL_HERE';
+const generatedSignals=[];
+let tradeResults=[];
+try{tradeResults=JSON.parse(localStorage.getItem('hamidAiTradeResults')||'[]');if(!Array.isArray(tradeResults))tradeResults=[];}catch(e){tradeResults=[];}
+function saveTradeResults(){try{localStorage.setItem('hamidAiTradeResults',JSON.stringify(tradeResults));}catch(e){}}
+function renderTradeResults(){
+ const wins=tradeResults.filter(x=>x.outcome==='WIN').length,losses=tradeResults.filter(x=>x.outcome==='LOSS').length,total=wins+losses;
+ $('record-total').textContent=total;$('record-wins').textContent=wins;$('record-losses').textContent=losses;$('record-rate').textContent=total?((wins/total)*100).toFixed(1)+'%':'—';
+ const list=$('trade-result-list');
+ if(!tradeResults.length){list.innerHTML='<div class="empty-state">No WIN/LOSS records yet. Add your first result above.</div>';return;}
+ list.innerHTML=tradeResults.slice().reverse().map(item=>`<div class="trade-result-item"><div><b>${escapeHtml(item.pair)} · ${item.direction}</b><small>${item.time}${item.note?' · '+escapeHtml(item.note):''}</small></div><span class="result-pill ${item.outcome}">${item.outcome}</span></div>`).join('');
+}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$('result-launch').addEventListener('click',()=>{$('result-modal').classList.add('open');renderTradeResults();});
+$('close-result').addEventListener('click',()=>$('result-modal').classList.remove('open'));
+$('result-modal').addEventListener('click',e=>{if(e.target===$('result-modal'))$('result-modal').classList.remove('open');});
+$('trade-result-form').addEventListener('submit',e=>{e.preventDefault();const pair=$('record-pair').value.trim();if(!pair)return;tradeResults.push({pair,direction:$('record-direction').value,outcome:$('record-outcome').value,note:$('record-note').value.trim(),time:new Date().toLocaleString()});saveTradeResults();renderTradeResults();$('record-note').value='';});
+function openTab(name){
+ document.querySelectorAll('.page').forEach(page=>page.classList.remove('active'));
+ const target=$('page-'+name); if(target) target.classList.add('active');
+ if(name==='dashboard' && !$('result').classList.contains('show')) $('setup').style.display='block';
+ document.querySelectorAll('.nav button').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===name));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>openTab(btn.dataset.tab)));
+function renderHistory(){
+ const list=$('history-list');
+ if(!generatedSignals.length){list.innerHTML='<div class="empty-state">No verified live signals yet. Connect a live data feed first.</div>';return;}
+ list.innerHTML=generatedSignals.slice().reverse().map(item=>`<div class="history-item"><div><b>${item.pair}</b><small>${item.time} · ${item.broker} · ${item.expiry}</small></div><div class="history-dir ${item.direction.toLowerCase()}">${item.direction==='UP'?'↑':'↓'} ${item.direction}</div></div>`).join('');
+}
+function renderStats(){
+ const total=generatedSignals.length,up=generatedSignals.filter(x=>x.direction==='UP').length,down=generatedSignals.filter(x=>x.direction==='DOWN').length;
+ $('stat-total').textContent=total;$('stat-up').textContent=up;$('stat-down').textContent=down;$('stat-rate').textContent='Not tracked';
+}
+
+renderTradeResults();
+let runId=0;
+
+const pairSets={
+ 'Live Markets':['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','BTC/USD'],
+ 'OTC Markets (broker feed required)':['USD/ARS (OTC)','USD/BRL (OTC)','EUR/USD (OTC)','GBP/USD (OTC)','USD/PKR (OTC)','USD/INR (OTC)','USD/BDT (OTC)','USD/TRY (OTC)','USD/EGP (OTC)','USD/NGN (OTC)']
+};
+function updatePairs(){
+ const market=$('market').value, pair=$('pair'), old=pair.value;
+ const choices=market.startsWith('OTC')?pairSets['OTC Markets (broker feed required)']:pairSets['Live Markets'];
+ pair.innerHTML=choices.map(x=>`<option>${x}</option>`).join('');
+ pair.value=choices.includes(old)?old:choices[0];
+ $('auto-pair').textContent=pair.value;
+}
+function syncSettings(){ $('broker').value=$('broker2').value; $('market').value=$('market2').value; updatePairs(); }
+$('market').addEventListener('change',updatePairs);
+$('pair').addEventListener('change',()=>{$('auto-pair').textContent=$('pair').value;});
+$('broker2').addEventListener('change',syncSettings);$('market2').addEventListener('change',syncSettings);
+function ema(values,period){
+ const k=2/(period+1);let value=values[0];const out=[value];
+ for(let i=1;i<values.length;i++){value=values[i]*k+value*(1-k);out.push(value);}return out;
+}
+function rsi(values,period=14){
+ let gains=0,losses=0;for(let i=values.length-period;i<values.length;i++){const d=values[i]-values[i-1];if(d>0)gains+=d;else losses-=d;}
+ if(losses===0)return 100;const rs=(gains/period)/(losses/period);return 100-(100/(1+rs));
+}
+function analyzePrices(values){
+ const fast=ema(values,9),slow=ema(values,21),macd=values.map((_,i)=>fast[i]-slow[i]),sig=ema(macd,9);
+ const last=values.length-1,rv=rsi(values,14),trend=fast[last]>slow[last],macdUp=macd[last]>sig[last];
+ let direction='NO TRADE',reason='Indicators do not agree';
+ if(trend&&macdUp&&rv>=50&&rv<=70){direction='UP';reason='EMA, MACD and RSI agree';}
+ else if(!trend&&!macdUp&&rv<=50&&rv>=30){direction='DOWN';reason='EMA, MACD and RSI agree';}
+ else if(rv>70)reason='RSI is overbought; wait';else if(rv<30)reason='RSI is oversold; wait';
+ return {direction,rv,emaFast:fast[last],emaSlow:slow[last],macd:macd[last],macdSignal:sig[last],reason};
+}
+function showNoSignal(message,state='WAITING FOR INPUT'){
+ $('feed-state').textContent=state;
+ $('auto-signal').textContent='NO SIGNAL';
+ $('signal-status').textContent=message;
+ $('analysis').classList.remove('show');
+ $('result').classList.remove('show');
+}
+
+let scanTimer=null;
+async function start(){
+ const btn=$('generate-signal');
+ const market=$('market').value;
+ const pair=$('pair').value;
+ const isOtc=market.startsWith('OTC');
+ $('auto-pair').textContent=pair;
+ $('auto-signal').textContent='WAITING';
+ $('feed-state').textContent='CONNECTING';
+ $('feed-state').style.color='var(--gold)';
+ $('analysis').classList.add('show');
+ $('result').classList.remove('show');
+ $('scan-label').textContent='FETCHING VERIFIED PRICE DATA';
+ $('scan-detail').textContent='Requesting recent candles from the configured data provider';
+ $('signal-status').textContent='Connecting to the secure market-data service...';
+ $('analysis').scrollIntoView({behavior:'smooth',block:'start'});
+ if(isOtc){
+   $('feed-state').textContent='OTC FEED REQUIRED';
+   $('scan-label').textContent='OTC ANALYSIS UNAVAILABLE';
+   $('scan-detail').textContent='Twelve Data Forex prices are not Pocket Option OTC prices.';
+   $('signal-status').textContent='No verified OTC provider is configured. OTC signals are disabled rather than guessed.';
+   $('auto-signal').textContent='NO OTC DATA';
+   return;
+ }
+ if(!MARKET_API_URL || MARKET_API_URL.includes('PASTE_CLOUDFLARE')){
+   $('feed-state').textContent='BACKEND URL REQUIRED';
+   $('scan-label').textContent='SETUP REQUIRED';
+   $('scan-detail').textContent='Deploy the included secure Worker and paste its URL into MARKET_API_URL.';
+   $('signal-status').textContent='The Twelve Data key must be saved as a Cloudflare Worker secret. It must not be placed in this HTML file.';
+   $('auto-signal').textContent='NOT CONNECTED';
+   return;
+ }
+ btn.disabled=true; btn.textContent='CONNECTING...';
+ try{
+   const response=await fetch(`${MARKET_API_URL.replace(/\/$/,'')}/?symbol=${encodeURIComponent(pair)}&interval=1min`);
+   const payload=await response.json();
+   if(!response.ok || !payload.ok) throw new Error(payload.error || `Market service returned HTTP ${response.status}`);
+   const closes=(payload.values||[]).map(x=>Number(x.close)).filter(Number.isFinite);
+   if(closes.length<35) throw new Error('Not enough valid candles received to calculate EMA, RSI and MACD.');
+   const analysis=analyzePrices(closes);
+   $('feed-state').textContent='LIVE DATA RECEIVED';
+   $('feed-state').style.color='var(--green)';
+   $('scan-label').textContent=analysis.direction==='NO TRADE'?'NO CLEAR SIGNAL':'ANALYSIS COMPLETE';
+   $('scan-detail').textContent=`${payload.symbol} · ${payload.interval} · ${payload.values.length} candles`;
+   $('signal-status').textContent=analysis.reason;
+   $('auto-signal').textContent=analysis.direction==='UP'?'CALL':analysis.direction==='DOWN'?'PUT':'NO TRADE';
+   if(analysis.direction==='NO TRADE'){
+     $('result').classList.remove('show');
+     return;
+   }
+   const now=new Date();
+   const expiry=$('expiry').value;
+   $('rpair').textContent=pair;
+   $('rbroker').textContent=$('broker').value;
+   $('rmarket').textContent='LIVE · Twelve Data';
+   $('direction').textContent=analysis.direction==='UP'?'CALL':'PUT';
+   $('arrow').textContent=analysis.direction==='UP'?'↑':'↓';
+   $('circle').classList.toggle('up',analysis.direction==='UP');
+   $('sid').textContent='TD-'+now.getTime().toString().slice(-8);
+   $('score').textContent='EMA / RSI / MACD';
+   $('rexpiry').textContent=expiry;
+   $('entry').textContent=now.toLocaleTimeString();
+   $('end').textContent='Broker expiry: '+expiry;
+   $('strength').textContent='Rule agreement';
+   $('confidence').textContent=`RSI ${analysis.rv.toFixed(1)}`;
+   $('analysis-detail').textContent=`${analysis.reason}. EMA9 ${analysis.emaFast.toFixed(5)} · EMA21 ${analysis.emaSlow.toFixed(5)} · MACD ${analysis.macd.toFixed(6)} vs signal ${analysis.macdSignal.toFixed(6)}. Data source: Twelve Data; this is analysis, not a guaranteed outcome.`;
+   $('result').classList.add('show');
+   generatedSignals.push({pair,direction:analysis.direction,time:now.toLocaleString(),broker:$('broker').value,expiry});
+   renderHistory();renderStats();
+ }catch(err){
+   $('feed-state').textContent='FEED ERROR';
+   $('feed-state').style.color='var(--red)';
+   $('scan-label').textContent='CONNECTION / DATA ERROR';
+   $('scan-detail').textContent=err.message;
+   $('signal-status').textContent='No signal was generated because valid market data was not received.';
+   $('auto-signal').textContent='NO DATA';
+   $('result').classList.remove('show');
+ }finally{
+   btn.disabled=false;btn.textContent='✦ GENERATE SIGNAL';
+ }
+}
+$('generate-signal').addEventListener('click',start);
+$('again').addEventListener('click',start);
+</script>
+</body>
+</html>
